@@ -1,0 +1,39 @@
+<div class="modal d-block bg-dark bg-opacity-50">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Task</h5>
+        <button type="button" class="btn-close" (click)="onClose()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" formControlName="title">
+            <div class="text-danger" *ngIf="taskForm.get('title')?.touched && taskForm.get('title')?.hasError('required')">
+              Title is required
+            </div>
+            
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" formControlName="description"></textarea>
+          </div>
+          <div class="dropdown mb-3">
+            <button class="btn btn-purple dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Status
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item " type="button"
+                  (click)="taskForm.controls['status'].setValue('pending')">Pending</button></li>
+              <li><button class="dropdown-item " type="button"
+                  (click)="taskForm.controls['status'].setValue('completed')">Completed</button></li>
+            </ul>
+          </div>
+          <button class="btn btn-purple w-100 mt-3" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
