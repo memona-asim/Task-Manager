@@ -1,0 +1,24 @@
+<button class="btn btn-purple rounded-circle btn-lg position-absolute top-50 start-50 translate-middle" (click)="showAddTaskForm = true">
+    +
+  </button>
+  
+
+  <div *ngIf="showAddTaskForm" class="modal-body">
+    <add-task-component
+      *ngIf="showAddTaskForm"
+      (save)="handleSubmit($event)"
+      (close)="handleClose()">
+    </add-task-component>
+  </div>
+  
+  <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1055;">
+    <div *ngIf="showToast" class="toast show align-items-center text-bg-success border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">
+          Task added!
+        </div>
+        <button type="button" class="btn-close-white me-2 m-auto" (click)="showToast = false"></button>
+      </div>
+    </div>
+  </div>
+  

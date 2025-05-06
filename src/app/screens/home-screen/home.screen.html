@@ -1,0 +1,33 @@
+<div *ngFor="let task of tasks()" class="card p-3 mb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1" style="display: flex; align-items: center;">
+        <span *ngIf="task.status=='completed'" >
+          <i class="bi bi-check-circle-fill" style="font-size: 2rem; color: greenyellow;"></i>
+        </span>
+        <span *ngIf="task.status=='pending'" >
+          <i class="bi bi-hourglass-split " style="font-size: 2rem; color: goldenrod;"></i>
+        </span>
+      </div>
+      <div class="col-md-7">
+        <h3>{{ task.title }}</h3>
+        <h6>{{ task.description }}</h6>
+      </div>
+       <div class="col-md-4" style="display: flex; align-items: center;">
+        <button class="btn btn-purple" (click)="handleEdit(task)">Edit</button>
+        <button class="btn btn-purple " (click)="handleDelete(task)">Delete</button>
+
+       </div>
+    </div>
+  </div>
+</div>
+  
+  
+  <div class="modal-body">
+    <edit-task-component
+      *ngIf="showEditTaskForm"
+      [task]="selectedTask"
+      (save)="saveEdit($event)"
+      (close)="handleClose()">
+    </edit-task-component>
+  </div>
